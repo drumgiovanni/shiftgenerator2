@@ -1,1 +1,1 @@
-web: gunicorn giovannitheproject.wsgi --log-file -
+web: gunicorn giovannitheproject.giovannitheproject.wsgi --log-file -
