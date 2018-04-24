@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block title %}シフトGeneratorへようこそ{% endblock %}
+{% block content %}
+  <div class="top-buttons">
+
+
+
+  <a id="trigger">始めよう</a>
+  <a id="readme" href="https://github.com/drumgiovanni/heroku-shiftgenerator">使い方</a>
+  </div>
+  <div class="workers-info">
+    <div class="calendar">
+      {% autoescape off %}
+      {{ pycalendar }}
+      {% endautoescape %}
+      {{ message1 }}
+    </div>
+    <p>
+      従業員の情報を入力してください。
+    </p>
+    <div class="content">
+      <p>
+        ・名前
+      </p>
+      <input type="text" name="worker-name" placeholder="名前を入力" id="worker-name"/>
+    </div>
+    <div class="content">
+      <p>
+        ・属性
+      </p>
+      <input type="radio" name="worker-type" value="平日" class="radio"/>平日勤務　
+      <input type="radio" name="worker-type" value="土日" class="radio"/>土日勤務
+    </div>
+    <div class="content">
+      <p>
+        ・休み希望
+      </p>
+      <input type="text" size="40" name="worker-dayoff" placeholder="例)1,8,15,22" id="worker-dayoff"/>
+    </div>
+    <input type="button" value="登録する" id="register"/>
+  </div>
+
+
+  <div class="show-worker">
+    <div class ="box">
+      <div id="person-list">
+        <p>
+          登録されている従業員情報
+        </p>
+      </div>
+    </div>
+    <form action="{% url 'djsg:result'%}" method="post">
+      {% csrf_token %}
+      <div id="hidden-inputs">
+
+      </div>
+      <input type="submit" id="add-worker" value="従業員の登録を完了する" />
+    </form>
+  </div>
+{% endblock %}

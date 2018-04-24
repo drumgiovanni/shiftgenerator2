@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}シフト一覧{% endblock %}
+{% block content %}
+
+<h1>今までに作成したシフト一覧</h1>
+
+<ul style="margin-left: 7%; margin-bottom: 200px;">
+{% for shift in shiftslist %}
+	<li>{{shift}}</li>
+{% endfor %}
+</ul>
+
+<hr/>
+
+<div id="downloadsh">
+	<p>シフトをダウンロードする</p>
+	<form action="shift" method="post" name="form1">
+	{% csrf_token %}
+
+		<select name="sel_month" size="1" style="width:300px" >
+			{% for shift in shiftslist %}
+			
+			<option value="{{shift}}">{{shift}}</option>
+			{%endfor%}
+		</select>
+
+		<input type="submit" value="ダウンロードする">
+	</form>
+</div>
+
+
+{% endblock %}

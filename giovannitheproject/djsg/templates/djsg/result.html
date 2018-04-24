@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}シフトが完成しました。{% endblock %}
+
+{% block content %}
+  <h1>シフト完成！！</h1>
+  <p>
+    わーいわーい＼(^o^)／
+  </p>
+  <p>
+    下からダウンロードしてね。
+  </p>
+
+
+    <div class="btn btn-two">
+      <form action="shift" method="post" name="form1">
+      {% csrf_token %}
+      <input type="hidden" name="sel_month" value="{{nextmonth}}月のShift.xlsx">
+      <a href="javascript:form1.submit()" download="shift" type="button">
+        ダウンロード
+      </a>
+
+    </div>
+
+
+
+
+
+
+
+
+
+{% endblock %}

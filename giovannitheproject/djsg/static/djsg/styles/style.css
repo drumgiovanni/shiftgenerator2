@@ -1,0 +1,329 @@
+body {
+  width:100%;
+  height:100%;
+  font-family:sans-serif;
+  background-color:#27223E ;
+  color: white;
+}
+.indexul li{
+  list-style: none;
+}
+
+
+.indexul a{
+   display:block;
+   width: 250px;
+   height:70px;
+   line-height: 70px;
+   color: #FFF;
+   font-size: 20px;
+   text-decoration: none;
+   text-align: center;
+   background-color: #f39800; /*ボタン色*/
+   border-bottom: solid 6px #ec6c00; /*下線色*/
+   border-radius: 5px;
+   margin-bottom:60px;
+   margin: 30px auto;
+  /*角丸*/}
+
+  .indexul a:hover{
+    background-color: #f9c500;/*ボタン色*/
+    border-bottom: solid 6px #f39800; /*下線色*/
+  }
+  .indexul a:active{
+    margin-top: 6px;
+    border-bottom: none;
+    -webkit-transform: translateY(6px);　/*下移動*/
+    transform: translateY(6px);
+  }
+
+header {
+  background-color: #787471 ;
+  width: 100%;
+  height: 120px;
+}
+#login {
+  margin: 40 auto;
+}
+
+.main-wrapper h1{
+  color:white;
+  margin-left:10%;
+}
+.workers-info {
+  margin-left: 40px;
+  display:none;
+  float:left;
+}
+.content {
+  background-color:skyblue;
+  padding-top:2px;
+  padding-bottom:2px;
+  padding-left:6px;
+  margin-top:3px;
+  margin-bottom:3px;
+  width: 420px;
+}
+#register {
+  margin-right:237px;
+}
+
+.show-worker {
+  display:none;
+  height:300px;
+  width:400px;
+  margin-left: 40px;
+  margin-top: 370px;
+  color:black;
+  float:left;
+}
+#person-list{
+  background-color: white;
+}
+#add-worker {
+  display:none;
+  margin-left: 59%;
+  margin-top:5px;
+}
+.box {
+  overflow:auto;
+  height:280px;
+  width:400px;
+}
+
+.btn a {
+  color:white;
+  position:absolute;
+  z-index:2;
+  left:80px;
+}
+
+footer {
+  position:absolute;
+  margin-top:700px;
+  z-index: 2;
+  width:100%;
+  background-color:lightgreen;
+  display:block;
+}
+
+#hidden-inputs {
+  display:none;
+}
+
+
+
+table {
+  border-collapse: collapse;
+}
+
+td {
+  border: solid 1px;
+  padding:0.5em;
+}
+th {
+  padding:0.2em;
+}
+.calendar {
+  margin-top:40px;
+  width:400px;
+}
+.top-buttons {
+float:left;
+font-size: 24px;
+margin-top:40px;
+margin-left:60px;
+}
+
+#trigger {
+  margin-right:40px;
+  display:block;
+  float:left;
+   width: 250px;
+   height:70px;
+   line-height: 70px;
+   color: #FFF;
+   text-decoration: none;
+   text-align: center;
+   background-color: #f39800; /*ボタン色*/
+   border-bottom: solid 6px #ec6c00; /*下線色*/
+   border-radius: 5px; /*角丸*/}
+#trigger:hover{
+        background-color: #f9c500; /*ボタン色*/
+        border-bottom: solid 6px #f39800; /*下線色*/
+}
+#trigger:active{
+  margin-top: 6px;
+  border-bottom: none;
+  -webkit-transform: translateY(6px);　/*下移動*/
+  transform: translateY(6px);
+}
+
+
+ #readme {
+   display:block;
+   float:left;
+        width: 250px;
+        height:70px;
+        line-height: 70px;
+        color: #fff;
+        text-decoration: none;
+        text-align: center;
+        background-color: #f39800; /*ボタン色*/
+        border-bottom: solid 6px #ec6c00; /*下線色*/
+        border-radius: 5px; /*角丸*/
+ }
+#readme:hover{
+  background-color: #f9c500;/*ボタン色*/
+  border-bottom: solid 6px #f39800; /*下線色*/
+}
+#readme:active{
+  margin-top: 6px;
+  border-bottom: none;
+  -webkit-transform: translateY(6px);　/*下移動*/
+  transform: translateY(6px);
+}
+
+.btn {
+  position: relative;
+  color: white;
+  width: 256px;
+  height: 64px;
+  margin-left:25px;
+  margin-top:25px;
+  text-align: center;
+  line-height: 64px;
+  transition: all 0.3s;
+  span {
+    transition: all 0.3s;
+    tranform: scale(1, 1);
+  }
+}
+.btn-two::before, .btn-two::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+	height: 100%;
+  bottom: 0;
+	left: 0;
+	z-index: 1;
+  transition: all 0.3s;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.btn-two:hover::after {
+  animation-name: rotatecw;
+  animation-duration: 2s;
+}
+.btn-two:hover::before {
+  animation-name: rotateccw;
+  animation-duration: 3s;
+}
+.btn-two:hover::after, .btn-two:hover::before {
+  left: 96px;
+  width: 64px;
+
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.tgform {
+  
+  margin-top: 40px;
+}
+
+.tgp {
+  margin-left: 40px;
+}
+
+#tgsub {
+  margin-left:90%;
+}
+
+
+#tgsel {
+  width:40px;
+  color:black;
+}
+
+#tcsub {
+  
+  width: 440px;
+}
+
+.dbshow {
+  width:440px;
+  height:100px;
+}
+
+#downloadsh {
+  margin-left:7%;
+}
+
+@keyframes rotatecw {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(360deg);}
+}
+
+@keyframes rotateccw {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(-360deg);}
+}
+@media screen and ( max-width:480px ){
+  .top-bottuns {
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:75px;
+    font-size:24px;
+  }
+  .workers-info {
+    display:none;
+    margin-left:10px;
+  }
+  .content {
+    background-color:skyblue;
+    padding-top:2px;
+    padding-bottom:2px;
+    padding-left:6px;
+    margin-top:3px;
+    margin-bottom:3px;
+    width: 90%;
+  }
+  .show-worker {
+    display:none;
+    height:300px;
+    width:400px;
+    margin-left: 10px;
+    margin-top: 20px;
+    color:black;
+  }
+
+  #trigger {
+    display:block;
+     width: 250px;
+     height:70px;
+     line-height: 70px;
+     color: #FFF;
+     text-decoration: none;
+     text-align: center;
+     background-color: #f39800; /*ボタン色*/
+     border-bottom: solid 6px #ec6c00; /*下線色*/
+     border-radius: 5px;
+     margin-bottom:60px;
+    /*角丸*/}
+     
+  #readme {
+    display:block;
+     width: 250px;
+     height:70px;
+     line-height: 70px;
+     color: #fff;
+     text-decoration: none;
+     text-align: center;
+     background-color: #f39800; /*ボタン色*/
+     border-bottom: solid 6px #ec6c00; /*下線色*/
+     border-radius: 5px; /*角丸*/
+
+  }
+
+}
