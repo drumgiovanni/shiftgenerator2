@@ -25,14 +25,14 @@ This app can help you generating the work shift and work report for parttimework
 ### シフト作成
 
 
-<a href="https://github.com/drumgiovanni/shiftgenerator2/blob/master/assets/shgen_README.md">こちら</a>を参照してください。
+<a href="https://github.com/drumgiovanni/shiftgenerator2/blob/master/shgen_README.md">こちら</a>を参照してください。
 
 
 ### シフトアーカイブ
 
-<a href="https://github.com/drumgiovanni/shiftgenerator2/blob/master/assets/sharch_README.md">こちら</a>を参照してください。
+<a href="https://github.com/drumgiovanni/shiftgenerator2/blob/master/sharch_README.md">こちら</a>を参照してください。
 
 
 ### 勤務報告書作成
 
-<a href="https://github.com/drumgiovanni/shiftgenerator2/blob/master/assets/workrepo_README.md">こちら</a>を参照してください。
+<a href="https://github.com/drumgiovanni/shiftgenerator2/blob/master/workrepo_README.md">こちら</a>を参照してください。
