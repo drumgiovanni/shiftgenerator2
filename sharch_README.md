@@ -21,7 +21,7 @@
 ![ダウンロード方法](https://github.com/drumgiovanni/shiftgenerator2/blob/master/assets/ss5.png)  
 
 
-##TOP画面に戻るには
+## TOP画面に戻るには
 
 左上の**Shift-generatorへようこそ**をクリックするとTOP画面に戻ることができます。
 
