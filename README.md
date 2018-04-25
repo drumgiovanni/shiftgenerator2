@@ -17,7 +17,7 @@ This app can help you generating the work shift and work report for parttimework
 
 ログインするとこのような画面が見えているはずです。
 
-![TOP画面](https://github.com/drumgiovanni/heroku-shiftgenerator/blob/master/assets/ss1.png)
+![TOP画面](https://github.com/drumgiovanni/shiftgenerator2/blob/master/assets/ss2.png)
 
 
 「○月分のシフト作成」を選択すると来月分のシフトの作成、「シフトアーカイブ」を選択すると今までに作成したシフトのダウンロード、「勤務報告書作成」を選択すると勤務報告書の作成ができます。
@@ -25,14 +25,14 @@ This app can help you generating the work shift and work report for parttimework
 ### シフト作成
 
 
-<a href="https://github.com/drumgiovanni/heroku-shiftgenerator/blob/master/assets/shgen_README.md">こちら</a>を参照してください。
+<a href="https://github.com/drumgiovanni/shiftgenerator2/blob/master/assets/shgen_README.md">こちら</a>を参照してください。
 
 
 ### シフトアーカイブ
 
-<a href="https://github.com/drumgiovanni/heroku-shiftgenerator/blob/master/assets/sharch_README.md">こちら</a>を参照してください。
+<a href="https://github.com/drumgiovanni/shiftgenerator2/blob/master/assets/sharch_README.md">こちら</a>を参照してください。
 
 
 ### 勤務報告書作成
 
-<a href="https://github.com/drumgiovanni/heroku-shiftgenerator/blob/master/assets/workrepo_README.md">こちら</a>を参照してください。
+<a href="https://github.com/drumgiovanni/shiftgenerator2/blob/master/assets/workrepo_README.md">こちら</a>を参照してください。
