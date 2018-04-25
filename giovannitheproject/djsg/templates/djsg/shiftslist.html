@@ -2,31 +2,40 @@
 {% block title %}シフト一覧{% endblock %}
 {% block content %}
 
-<h1>今までに作成したシフト一覧</h1>
+<div class="top-buttons">
 
-<ul style="margin-left: 7%; margin-bottom: 200px;">
-{% for shift in shiftslist %}
-	<li>{{shift}}</li>
-{% endfor %}
-</ul>
+
+
+  <a id="trigger">始めよう</a>
+  <a id="readme" href="https://github.com/drumgiovanni/shiftgenerator2/blob/master/workrepo_README.md">使い方</a>
+</div>
+<div class="workers-info">
+
+	<h1>今までに作成したシフト一覧</h1>
+
+	<ul style="margin-left: 7%; margin-bottom: 200px;">
+	{% for shift in shiftslist %}
+		<li>{{shift}}</li>
+	{% endfor %}
+	</ul>
 
 <hr/>
 
-<div id="downloadsh">
-	<p>シフトをダウンロードする</p>
-	<form action="shift" method="post" name="form1">
-	{% csrf_token %}
+	<div id="downloadsh">
+		<p>シフトをダウンロードする</p>
+		<form action="shift" method="post" name="form1">
+		{% csrf_token %}
 
-		<select name="sel_month" size="1" style="width:300px" >
-			{% for shift in shiftslist %}
-			
-			<option value="{{shift}}">{{shift}}</option>
-			{%endfor%}
-		</select>
+			<select name="sel_month" size="1" style="width:300px" >
+				{% for shift in shiftslist %}
+				
+				<option value="{{shift}}">{{shift}}</option>
+				{%endfor%}
+			</select>
 
-		<input type="submit" value="ダウンロードする">
-	</form>
+			<input type="submit" value="ダウンロードする">
+		</form>
+	</div>
 </div>
-
 
 {% endblock %}
