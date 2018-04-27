@@ -1,6 +1,7 @@
 from django.urls import path
 from . import views
 
+
 app_name = 'djsg'
 urlpatterns = [
     path('', views.index, name="index"),
@@ -14,3 +15,4 @@ urlpatterns = [
     path('register', views.register, name="register"),
     path('shiftmailer', views.shiftmailer, name="shiftmailer"),
 ]
+
