@@ -26,4 +26,6 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('shiftslist', include('djsg.urls')),
     path('ajax', include('djsg.urls')),
+    path('register', include('djsg.urls')),
+    path('shiftmailer', include('djsg.urls')),
 ]

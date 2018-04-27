@@ -4,7 +4,7 @@ from django.http import JsonResponse
 import calendar
 import datetime
 import os
-from . import main, timecardgenerator, mailer, models
+from . import main, timecardgenerator, mailer, models, shift_mailer
 
 
 
@@ -68,9 +68,25 @@ def result(request):
             workerlist[workernamelist[i]] = workersinfo
 
         main.shiftgenerator(workerlist)
+        try:
+            mailaddres = models.Workers.objects.all()
+        except:
+            pass
 
-        return render(request, 'djsg/result.html', {"nextmonth":nextmonth})
+        return render(request, 'djsg/result.html', {"nextmonth":nextmonth, "mailaddres":mailaddres})
 
+@login_required
+def shiftmailer(request):
+
+    info = request.POST.get("sel_mail")
+    
+
+    sendaddres = models.Workers.objects.get(worker_name=info).mail
+    
+    shift_mailer.sendmail(nextmonth, sendaddres)
+
+    
+    return render(request, 'djsg/sent.html')
 
 @login_required
 def shift(request):
@@ -112,6 +128,7 @@ def shiftslist(request):
 def timecard(request):
     
     sel_month = request.POST.get('sel-month')
+    
     name = request.POST.get('name')
     f_name = request.POST.get('f_name')
     wnum = request.POST.get('w_num')
@@ -148,6 +165,13 @@ def ajax(request):
         "mail" : d.mail}
         print(ret)
         return JsonResponse(ret)
-    
+def register(request):
+    try:
+        d = models.Workers.objects.all()
+        
+    except:
+        pass
+
+    return render(request, 'djsg/register.html', {"d":d})
 
 

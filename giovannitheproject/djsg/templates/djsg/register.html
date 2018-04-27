@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title%}従業員情報登録{% endblock%}
+{% block content%}
+
+<h1>従業員情報登録</h1>
+<div style="margin-left: 25px;">
+初めてこのシステムを使う方は、以下のフォームから従業員情報を登録してください。<br>
+登録したかどうかを忘れた方は、以下のセレクトボックスを確認し、自分の名前があるかどうかを確かめてください。<br>
+もし自分の名前がない場合は、以下のフォームから従業員情報を登録してください。
+</div>
+<hr>
+<div style="margin-bottom:45px;">
+<p> ・セレクトボックス</p>
+
+<select name="sel_person" size="1" class="tgform" style="width:300px; margin-left: 20%" id="tgselect">
+    {% for i in d %}
+    <option value="{{i}}" >{{i}}</option>
+    {% endfor %}
+    </select>
+</div>
+
+
+<div class="tcsub">
+	<p> ・従業員情報登録フォーム</p>
+	
+<form action="timecard" method="post">
+	{% csrf_token %}
+	<div class="content">
+        <h3>名前</h3>
+          
+            姓 <input type="text" name="name" id="pname" />
+        
+          
+            名 <input type="text" name="f_name" id="p_fname"/>
+        
+    </div>
+    <div class="content">
+    	<h3>社員番号</h3>
+    
+      		<input type="text" name="w_num" id="w_num" />
+    
+    </div>
+    <div class="content">
+        <h3>メールアドレス</h3>
+    
+         	<input type="text" name="mail" size="40" id="mail"/>
+      
+    </div>
+    	<input type="submit" value="登録する" name="b2" id ="tgsub" />
+ </form>
+</div>
+
+{% endblock %}

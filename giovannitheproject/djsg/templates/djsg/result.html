@@ -11,14 +11,28 @@
   </p>
 
 
-    <div class="btn btn-two">
+    
+      
+      <p>送信する</p>
+      以下から希望する送信先を選択し、送信するボタンを押してください。
+      <form action="shiftmailer" method="POST" >
+        {% csrf_token %}
+        <select name="sel_mail" size="1" style="width:230px;">
+          <option></option>
+          {% for i in mailaddres %}
+          <option value="{{i}}">{{i}}</option>
+          {% endfor %}
+        </select>
+        <input type="submit" value="送信する">
+      </form>
+     <div class="btn btn-two">
       <form action="shift" method="post" name="form1">
       {% csrf_token %}
       <input type="hidden" name="sel_month" value="{{nextmonth}}月のShift.xlsx">
       <a href="javascript:form1.submit()" download="shift" type="button">
         ダウンロード
       </a>
-
+    </form>
     </div>
 
 

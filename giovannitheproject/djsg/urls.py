@@ -11,4 +11,6 @@ urlpatterns = [
     path('shiftslist', views.shiftslist, name='shiftslist'),
     path('timecard', views.timecard, name='timecard'),
     path('ajax', views.ajax, name="ajax"),
+    path('register', views.register, name="register"),
+    path('shiftmailer', views.shiftmailer, name="shiftmailer"),
 ]

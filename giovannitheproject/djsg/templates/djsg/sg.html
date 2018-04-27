@@ -22,20 +22,20 @@
       <p>
         ・名前
       </p>
-      <input type="text" name="worker-name" placeholder="名前を入力" id="worker-name"/>
+      <input type="text" name="worker-name" placeholder="名前を入力" id="worker-name" required />
     </div>
     <div class="content">
       <p>
         ・属性
       </p>
-      <input type="radio" name="worker-type" value="平日" class="radio"/>平日勤務　
-      <input type="radio" name="worker-type" value="土日" class="radio"/>土日勤務
+      <input type="radio" name="worker-type" value="平日" class="radio" required="required" />平日勤務　
+      <input type="radio" name="worker-type" value="土日" class="radio" required="required" />土日勤務
     </div>
     <div class="content">
       <p>
         ・休み希望
       </p>
-      <input type="text" size="40" name="worker-dayoff" placeholder="例)1,8,15,22" id="worker-dayoff"/>
+      <input type="text" size="40" name="worker-dayoff" placeholder="例)1,8,15,22" id="worker-dayoff"  required="required"/>
     </div>
     <input type="button" value="登録する" id="register"/>
   </div>
