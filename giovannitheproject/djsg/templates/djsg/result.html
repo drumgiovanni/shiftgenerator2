@@ -2,18 +2,18 @@
 {% block title %}シフトが完成しました。{% endblock %}
 
 {% block content %}
+  <div style="margin-left:7%;"> 
   <h1>シフト完成！！</h1>
   <p>
-    わーいわーい＼(^o^)／
+    下からメールに送信するか、ダウンロードしてね。
   </p>
-  <p>
-    下からダウンロードしてね。
-  </p>
+
+  ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
 
 
     
-      
-      <p>送信する</p>
+      <div style="margin-bottom: 20px;">
+      <p>・メールを送信する</p>
       以下から希望する送信先を選択し、送信するボタンを押してください。
       <form action="shiftmailer" method="POST" >
         {% csrf_token %}
@@ -25,7 +25,10 @@
         </select>
         <input type="submit" value="送信する">
       </form>
-     <div class="btn btn-two">
+     </div>
+     <p style="margin-top:20px;">・ダウンロードする</p>
+     <div class="btn btn-two" >
+      
       <form action="shift" method="post" name="form1">
       {% csrf_token %}
       <input type="hidden" name="sel_month" value="{{nextmonth}}月のShift.xlsx">
@@ -35,7 +38,7 @@
     </form>
     </div>
 
-
+</div>
 
 
 

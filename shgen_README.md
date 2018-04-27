@@ -38,7 +38,7 @@
         ※ ミスした場合は、再読み込みしてください。リセットされます。
 
 1. 全従業員の情報の記入が完了したら、「従業員の登録を完了する」をクリック(画面が遷移します。)  
-     ![画面の写真](https://github.com/drumgiovanni/heroku-shiftgenerator/blob/master/others/ss3.png)
+     ![画面の写真](https://github.com/drumgiovanni/shiftgenerator2/blob/master/assets/ss10.png)
 
 1. 「ダウンロード」をクリック  
         好きな場所に生成されたエクセルシートを保存できます。  
