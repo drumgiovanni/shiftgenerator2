@@ -20,6 +20,10 @@ This app can help you generating the work shift and work report for parttimework
 ![TOP画面](https://github.com/drumgiovanni/shiftgenerator2/blob/master/assets/ss2.png)
 
 
+**初めてこのシステムを利用する際は、まず初めに、一番上の「従業員情報を登録する」をクリックし、従業員情報を登録してください！！**
+
+
+
 「○月分のシフト作成」を選択すると来月分のシフトの作成、「シフトアーカイブ」を選択すると今までに作成したシフトのダウンロード、「勤務報告書作成」を選択すると勤務報告書の作成ができます。
 
 ### シフト作成

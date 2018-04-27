@@ -13,37 +13,38 @@
 <p> ・セレクトボックス</p>
 
 <select name="sel_person" size="1" class="tgform" style="width:300px; margin-left: 20%" id="tgselect">
+    <option>ここに名前があれば登録済みです</option>
     {% for i in d %}
     <option value="{{i}}" >{{i}}</option>
     {% endfor %}
     </select>
 </div>
 
-
-<div class="tcsub">
-	<p> ・従業員情報登録フォーム</p>
+<p> ・従業員情報登録フォーム</p>
+<div class="tcsub" style="margin-left:7%;">
+	
 	
 <form action="timecard" method="post">
 	{% csrf_token %}
 	<div class="content">
         <h3>名前</h3>
           
-            姓 <input type="text" name="name" id="pname" />
+            姓 <input type="text" name="name" id="pname" required="required" placeholder="苗字を入力"/>
         
           
-            名 <input type="text" name="f_name" id="p_fname"/>
+            名 <input type="text" name="f_name" id="p_fname" required="required" placeholder="下の名前を入力"/>
         
     </div>
     <div class="content">
     	<h3>社員番号</h3>
     
-      		<input type="text" name="w_num" id="w_num" />
+      		<input type="text" name="w_num" id="w_num" size="30" required="required" pattern="[0-9][0-9][0-9][0-9][0-9][0-9][0-9]" placeholder="半角数字で社員番号を入力" />
     
     </div>
     <div class="content">
         <h3>メールアドレス</h3>
     
-         	<input type="text" name="mail" size="40" id="mail"/>
+         	<input type="mail" name="mail" size="40" id="mail" required="required" placeholder="読売のメールアドレスを入力"/>
       
     </div>
     	<input type="submit" value="登録する" name="b2" id ="tgsub" />
