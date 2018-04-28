@@ -1,5 +1,19 @@
 $(function(){
-  let workersobj = {}
+  const h = $(window).height();
+  $('main-wrapper').css('display','none');
+  $('#loader-bg, #loader').height(h).css('display','block');
+
+});
+
+$(window).load(function() {
+  $('#loader-bg').delay(900).fadeOut(800);
+  $('#loader').delay(600).fadeOut(300);
+  $('#wrap').css('display','block');
+})
+
+
+$(function(){
+  
   $('#trigger').click(function(){
     $('.main-wrapper').animate({'height':'400px'}, 1500);
     $('#readme').fadeOut(1000);
@@ -16,7 +30,6 @@ $('#register').click(function(){
   $('#worker-name').val('');
 
   if ($('input[name=worker-type]:checked')) {
-    console.log($('input[name=worker-type]:checked').val())
     type = $('input[name=worker-type]:checked').val();
     $('input[name=worker-type]:checked').prop('checked', false);
   }
@@ -37,7 +50,6 @@ $('#register').click(function(){
 
   $('#pform').submit(function(){
     event.preventDefault();
-    console.log($('#tgselect').val())
 
     const $form = $(this)
     
@@ -56,4 +68,6 @@ $('#register').click(function(){
     })
     return false;
   });
+
+
 });
