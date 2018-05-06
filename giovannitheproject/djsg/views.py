@@ -25,7 +25,7 @@ def index(request):
 @login_required
 def sg(request):
 
-    pubholys = {4:[30] ,5:[3, 4, 5], 6:['無し'] 7:[16], 8:[11], 9:[17, 24], 10:[8], 11:[3, 23], 12:[24]}
+    pubholys = {4:[30] ,5:[3, 4, 5], 6:['無し'], 7:[16], 8:[11], 9:[17, 24], 10:[8], 11:[3, 23], 12:[24]}
     noWorkingDays = {4:8,5:6,6:10,7:8,8:12,9:9,10:8,11:11,12:9} # 休刊日のディクショナリ
     thisyear = now.year
     pycalendar = calendar.HTMLCalendar(0).formatmonth(thisyear, nextmonth, withyear=True)
