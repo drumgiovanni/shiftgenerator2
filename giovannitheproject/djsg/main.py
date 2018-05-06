@@ -16,7 +16,7 @@ def shiftgenerator(workerlist):
     satlist = []                                            # 土曜日のリスト
     holydaylist = []                                        # 日祝のリスト
     daysinthemonth = []                                     # 月の日にちのリスト
-    pubholys = {4:[30] ,5:[3, 4, 5], 7:[16], 8:[11], 9:[17, 24], 10:[8], 11:[3, 23], 12:[24]}
+    pubholys = {4:[30] ,5:[3, 4, 5], 6:['無し'], 7:[16], 8:[11], 9:[17, 24], 10:[8], 11:[3, 23], 12:[24]}
     partworkers = []
     fullworkers = []
     dates =[]
