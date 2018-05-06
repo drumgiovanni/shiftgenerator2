@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 
 import os
 
+
+from socket import gethostname
+hostname = gethostname()
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MEDIA_ROOT = os.path.join(BASE_DIR, 'djsg/media')
@@ -25,9 +29,7 @@ STATIC_URL = '/static/'
 SECRET_KEY = '$z7hi51(l@pr3v95gt0b$7%yg)@(tt0$)f(x15j--rx7m5y%%p'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-
-ALLOWED_HOSTS = ['*']
+DEBUG = True
 
 
 # Application definition
@@ -86,7 +88,6 @@ DATABASES = {
 import dj_database_url
 db_from_env = dj_database_url.config()
 DATABASES['default'].update(db_from_env)
-
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
 
