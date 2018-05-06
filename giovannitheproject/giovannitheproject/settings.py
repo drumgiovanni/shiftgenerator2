@@ -134,69 +134,34 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 
 LOGGING = {
-
-'version': 1,
-
-'disable_existing_loggers': True,
-
-'formatters': {
-
-'verbose': {
-
-'format': '%(levelname)s [%(asctime)s] %(module)s %(message)s'
-
-},
-
-},
-
-'handlers': {
-
-'console': {
-
-'level': 'DEBUG',
-
-'class': 'logging.StreamHandler',
-
-'formatter': 'simple'
-
-},
-
-'file': {
-
-'class': 'logging.handlers.RotatingFileHandler',
-
-'formatter': 'verbose',
-
-'filename': '/var/www/logs/ibiddjango.log',
-
-'maxBytes': 1024000,
-
-'backupCount': 3,
-
-},
-
-'mail_admins': {
-
-'level': 'ERROR',
-
-'class': 'django.utils.log.AdminEmailHandler'
-
-}
-
-},
-
-'loggers': {
-
-'django': {
-
-'handlers': ['file', 'console',’mail_admins’],
-
-'propagate': True,
-
-'level': 'DEBUG',
-
-},
-
-}
-
+    'version': 1,
+    'disable_existing_loggers': True,
+    'formatters': {
+        'standard': {
+            'format': '%(asctime)s [%(levelname)s] %(name)s: %(message)s'
+        },
+    },
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse',
+        },
+        'require_debug_true': {
+            '()': 'django.utils.log.RequireDebugTrue',
+        },
+    },
+    'handlers': {
+        'mail_admins': {
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler',
+            'include_html': True,
+            'filters': ['require_debug_false'],
+        },
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['mail_admins'],
+            'level': os.environ.get('DJANGO_LOG_LEVEL', 'INFO'),
+            'propagate': True,
+        },
+    },
 }
