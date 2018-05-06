@@ -28,10 +28,14 @@ STATIC_URL = '/static/'
 SECRET_KEY = '$z7hi51(l@pr3v95gt0b$7%yg)@(tt0$)f(x15j--rx7m5y%%p'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
+
+SERVER_EMAIL = 'djsg@django.jp'
 
 ALLOWED_HOSTS = ['*']
 # Application definition
+
+ADMINS = ['giovanni', 'giovannithedev@gmail.com']
 
 INSTALLED_APPS = [
     'djsg.apps.DjsgConfig',
@@ -127,3 +131,72 @@ LOGIN_REDIRECT_URL = "/"
 
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+
+LOGGING = {
+
+'version': 1,
+
+'disable_existing_loggers': True,
+
+'formatters': {
+
+'verbose': {
+
+'format': '%(levelname)s [%(asctime)s] %(module)s %(message)s'
+
+},
+
+},
+
+'handlers': {
+
+'console': {
+
+'level': 'DEBUG',
+
+'class': 'logging.StreamHandler',
+
+'formatter': 'simple'
+
+},
+
+'file': {
+
+'class': 'logging.handlers.RotatingFileHandler',
+
+'formatter': 'verbose',
+
+'filename': '/var/www/logs/ibiddjango.log',
+
+'maxBytes': 1024000,
+
+'backupCount': 3,
+
+},
+
+'mail_admins': {
+
+'level': 'ERROR',
+
+'class': 'django.utils.log.AdminEmailHandler'
+
+}
+
+},
+
+'loggers': {
+
+'django': {
+
+'handlers': ['file', 'console',’mail_admins’],
+
+'propagate': True,
+
+'level': 'DEBUG',
+
+},
+
+}
+
+}
