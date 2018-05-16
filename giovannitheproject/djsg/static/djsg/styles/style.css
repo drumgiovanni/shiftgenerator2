@@ -6,6 +6,14 @@ body {
   color: white;
 }
 
+input :valid {
+  border: 2px dahed red;
+}
+
+input :invalid {
+  border: 2px solid black;
+}
+
 #loader-bg{
   display:none;
   position:fixed;
