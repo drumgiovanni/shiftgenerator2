@@ -28,7 +28,7 @@ STATIC_URL = '/static/'
 SECRET_KEY = '$z7hi51(l@pr3v95gt0b$7%yg)@(tt0$)f(x15j--rx7m5y%%p'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 SERVER_EMAIL = 'djsg@django.jp'
 
