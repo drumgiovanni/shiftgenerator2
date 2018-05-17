@@ -6,14 +6,11 @@ body {
   color: white;
 }
 
-input :valid {
-  border: 2px dahed red;
+.validation-message {
+  
+  color: red;
+  font-size: 8px;
 }
-
-input :invalid {
-  border: 2px solid black;
-}
-
 #loader-bg{
   display:none;
   position:fixed;

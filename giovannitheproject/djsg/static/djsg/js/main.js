@@ -47,9 +47,7 @@ $('#register').click(function(){
   $('#hidden-inputs').append(`<input type="text" name="worker-dayoff" value="${dayoff}" size="20"/>`);
   });
   
-  $('#worker-name').blur(function() {
-    $('#validation_form').checkValidity();
-  });
+
 
 
   $('#pform').submit(function(){

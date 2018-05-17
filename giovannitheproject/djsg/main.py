@@ -1,11 +1,14 @@
 
 # -*- coding: utf-8 -*-
 
-import calendar, datetime, openpyxl
+import calendar
+import datetime
+import openpyxl
 from openpyxl.styles import Font, PatternFill, Border, Side, Alignment
 import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 
 def shiftgenerator(workerlist):
 
@@ -16,21 +19,21 @@ def shiftgenerator(workerlist):
     satlist = []                                            # 土曜日のリスト
     holydaylist = []                                        # 日祝のリスト
     daysinthemonth = []                                     # 月の日にちのリスト
-    pubholys = {4:[30] ,5:[3, 4, 5], 7:[16], 8:[11], 9:[17, 24], 10:[8], 11:[3, 23], 12:[24]}
+    pubholys = {4: [30], 5: [3, 4, 5], 7: [16], 8: [11],
+                9: [17, 24], 10: [8], 11: [3, 23], 12: [24]}
     partworkers = []
     fullworkers = []
-    dates =[]
-    datesDic = {0:"月",1:"火",2:"水",3:"木",4:"金",5:"土",6:"日"}
-    noWorkingDays = {4:8,5:6,6:10,7:8,8:12,9:9,10:8,11:11,12:9} # 休刊日のディクショナリ
+    dates = []
+    datesDic = {0: "月", 1: "火", 2: "水", 3: "木", 4: "金",
+                5: "土", 6: "日"}
+    noWorkingDays = {4: 8, 5: 6, 6: 10, 7: 8, 8: 12,
+                     9: 9, 10: 8, 11: 11, 12: 9}  # 休刊日のディクショナリ
     shift = {}
     # 月に関する情報の取得
     nextmonth = int(datetime.date.today().month + 1)        # シフトを作る月を取得
 
-
     if nextmonth in pubholys:
         holydaylist.extend(pubholys[nextmonth])
-
-
 
     (a, b) = calendar.monthrange(2018, nextmonth)           # 月の最初の曜日と日数を取得
 
@@ -46,13 +49,11 @@ def shiftgenerator(workerlist):
         sun = 1
 
     thismonth = calendar.Calendar(firstweekday=a)
-    dateslist = list(thismonth.iterweekdays()) *5
-
+    dateslist = list(thismonth.iterweekdays()) * 5
 
     for datenum in dateslist:
         if len(dates) <= b-1:
             dates.append(datesDic[datenum])
-
 
     for i in range(0, 6):                                   # 土曜と日祝をリストに突っ込む
         if (sat + 7 * i) <= b and (sat + 7 * i) not in satlist:
@@ -65,9 +66,7 @@ def shiftgenerator(workerlist):
 
     weekdays = list(set(daysinthemonth) - set(satlist) - set(holydaylist))
 
-
     # 従業員に関する情報の取得
-
 
     for worker in workers:
         dayofflist = workerlist[worker]["休み希望"].split(',')
@@ -81,21 +80,16 @@ def shiftgenerator(workerlist):
         except ValueError:
             pass
 
-
         workabledays[worker] = list(set(daysinthemonth) - set(dayofflist))
         if noWorkingDays[nextmonth] in workabledays[worker]:
             workabledays[worker].remove(noWorkingDays[nextmonth])
-
 
         try:
             workabledays[worker] = list(map(int, workabledays[worker]))
         except:
             pass
 
-
-
     daysforexcel = [f"{nextmonth}月"] + daysinthemonth
-
 
     # exelシート作成
     wb = openpyxl.Workbook()
@@ -106,28 +100,27 @@ def shiftgenerator(workerlist):
 
     sh = wb["workerlist"]
     sh.merge_cells('A1:C1')
-    sh['A1'].font = Font(name="sans-serif",size=15, bold=True)
-    sh['A1']=("勤務可能日")
+    sh['A1'].font = Font(name="sans-serif", size=15, bold=True)
+    sh['A1'] = ("勤務可能日")
 
     sh.append(daysforexcel)
 
     # 土日の背景色設定
     satcell = PatternFill(
-        patternType = 'solid',
+        patternType='solid',
         start_color='ff00ff00',
         end_color='ff0000ff')
     suncell = PatternFill(
-        patternType = 'solid',
+        patternType='solid',
         start_color='ffff0000',
         end_color='ffff0000')
 
-    for i in range(2,b+2):
+    for i in range(2, b+2):
         selected = sh.cell(row=2, column=i)
         if selected.value in satlist:
             selected.fill = satcell
         elif selected.value in holydaylist:
             selected.fill = suncell
-
 
     # 従業員の勤務可能日をシートに反映
     for j in range(len(workers)):
@@ -139,7 +132,8 @@ def shiftgenerator(workerlist):
                 tictac.append("×")
         workableexcel = [workers[j]] + tictac
         sh.append(workableexcel)
-    wb.save(os.path.join(BASE_DIR, f'djsg/media/djsg/shifts/{nextmonth}月のShift.xlsx'))
+    wb.save(os.path.join(
+        BASE_DIR, f'djsg/media/djsg/shifts/{nextmonth}月のShift.xlsx'))
 
     checklist = weekdays + weekdays + satlist + satlist + holydaylist
     checklist.sort()
@@ -156,22 +150,31 @@ def shiftgenerator(workerlist):
             for hol in holydaylist:
 
                 try:
-                    if (sh.cell(row=worker.row, column=hol+1).value =="○") and (sh.cell(row=worker.row+1, column=hol+1).value !="○") and (hol in checklist):
+                    if (sh.cell(
+                        row=worker.row, column=hol+1).value == "○") and (
+                        sh.cell(
+                          row=worker.row+1, column=hol+1).value != "○") and (
+                          hol in checklist):
                         memo.append(hol)
                         checklist.remove(hol)
-                    elif (sh.cell(row=worker.row, column=hol+1).value =="○") and (sh.cell(row=worker.row+1, column=hol+1).value =="○"):
-                        if (holydaylist[count-1] not in memo) and (hol in checklist):
+                    elif (sh.cell(
+                        row=worker.row, column=hol+1).value == "○") and (
+                          sh.cell(
+                            row=worker.row+1, column=hol+1).value == "○"):
+                        if (holydaylist[count-1] not in memo) and (
+                              hol in checklist):
                             memo.append(hol)
 
                             checklist.remove(hol)
                 except IndexError:
-                    if sh.cell(row=worker.row, column=hol+1).value =="○" and (hol in checklist):
+                    if sh.cell(row=worker.row, column=hol+1).value == "○" and (
+                          hol in checklist):
                         memo.append(hol)
                         checklist.remove(hol)
                 count += 1
         elif worker.value in fullworkers:   # フルタイムの勤務日
             for day in weekdays:
-                if sh.cell(row=worker.row, column=day+1).value =="○":
+                if sh.cell(row=worker.row, column=day+1).value == "○":
                     memo.append(day)
                     checklist.remove(day)
 
@@ -182,7 +185,7 @@ def shiftgenerator(workerlist):
         for i in holydaylist:
             for j in partworkers:
                 if i in checklist:
-                    if i in workabledays[j] :
+                    if i in workabledays[j]:
                         checklist.remove(i)
                         workingdays[j].append(i)
 
@@ -217,21 +220,21 @@ def shiftgenerator(workerlist):
         except ValueError:
             pass
         looptime += 1
-        if looptime >=40:
+        if looptime >= 40:
             break
 
     p = ""
     num = 0
-    for l in range(0,len(partworkers)):
+    for l in range(0, len(partworkers)):
 
         if num == 0:
             num = len(workingdays[partworkers[l]])
             p = partworkers[l]
         elif num <= len(workingdays[partworkers[l]]):
-            num = len(workingdays[partworkers[l]]) # 長い方を入れている
+            num = len(workingdays[partworkers[l]])  # 長い方を入れている
             p = partworkers[l]
 
-    for l in range(0,len(partworkers)):
+    for l in range(0, len(partworkers)):
         if len(workingdays[partworkers[l]]) == num:
             pass
         elif num - len(workingdays[partworkers[l]]) >= 2:
@@ -241,23 +244,23 @@ def shiftgenerator(workerlist):
                 fixingp = partworkers[l]
                 for d in fixingset:
                     if num - len(workingdays[partworkers[l]]) >= 2:
-                        if not d in workingdays[fixingp]:
+                        if d not in workingdays[fixingp]:
                             if d in workabledays[fixingp]:
                                 workingdays[p].remove(d)
                                 workingdays[fixingp].append(d)
 
     p = ""
     num = 0
-    for l in range(0,len(fullworkers)):
+    for l in range(0, len(fullworkers)):
 
         if num == 0:
             num = len(workingdays[fullworkers[l]])
             p = fullworkers[l]
         elif num <= len(workingdays[fullworkers[l]]):
-            num = len(workingdays[fullworkers[l]]) # pに長い方を入れている
+            num = len(workingdays[fullworkers[l]])  # pに長い方を入れている
             p = fullworkers[l]
             # pは長く働く人の名前、numは長く働く人の勤務日数
-    for l in range(0,len(fullworkers)):
+    for l in range(0, len(fullworkers)):
         if len(workingdays[fullworkers[l]]) == num:
             pass
         elif num - len(workingdays[fullworkers[l]]) >= 2:
@@ -272,7 +275,6 @@ def shiftgenerator(workerlist):
                         if d in workabledays[fixingp]:
                             workingdays[p].remove(d)
                             workingdays[fixingp].append(d)
-
 
     wb.create_sheet(index=2, title="workingday")
     sh2 = wb["workingday"]
@@ -289,24 +291,26 @@ def shiftgenerator(workerlist):
         sh2.append(workingexcel)
 
     satcell = PatternFill(
-        patternType = 'solid',
+        patternType='solid',
         start_color='ff00ff00',
         end_color='ff0000ff')
     suncell = PatternFill(
-        patternType = 'solid',
+        patternType='solid',
         start_color='ffff0000',
         end_color='ffff0000')
 
-    for i in range(2,b+2):
+    for i in range(2, b+2):
         selected = sh2.cell(row=2, column=i)
-        selected.alignment = Alignment( horizontal = 'center')
+        selected.alignment = Alignment(horizontal='center')
         selected.font = Font(size=15, bold=True)
         if selected.value in satlist:
             selected.fill = satcell
         elif selected.value in holydaylist:
             selected.fill = suncell
 
-    wb.save(os.path.join(BASE_DIR, f'djsg/media/djsg/shifts/{nextmonth}月のShift.xlsx'))
+    wb.save(
+        os.path.join(BASE_DIR,
+                     f'djsg/media/djsg/shifts/{nextmonth}月のShift.xlsx'))
 
     hardworker = ""
     wdays = 0
@@ -323,27 +327,26 @@ def shiftgenerator(workerlist):
     sheet.append(daysforexcel)
 
     satcell = PatternFill(
-        patternType = 'solid',
+        patternType='solid',
         start_color='ff00ff00',
         end_color='ff0000ff')
     suncell = PatternFill(
-        patternType = 'solid',
+        patternType='solid',
         start_color='ffff0000',
         end_color='ffff0000')
 
-    for i in range(1,b+2):
+    for i in range(1, b+2):
         selected = sheet.cell(row=2, column=i)
-        selected.alignment = Alignment( horizontal = 'center')
+        selected.alignment = Alignment(horizontal='center')
         selected.font = Font(size=15, bold=True)
         if selected.value in satlist:
             selected.fill = satcell
         elif selected.value in holydaylist:
             selected.fill = suncell
 
-
     for worker in sh2['A']:
         counter = 1
-        shiftlist=[]
+        shiftlist = []
         if worker.value == hardworker:
             row = worker.row
             for day in sh2[row]:
@@ -363,12 +366,14 @@ def shiftgenerator(workerlist):
                         counter = 2
                     else:
                         counter = 1
-                elif day.value =="×":
+                elif day.value == "×":
                     shiftlist.append("×")
             shiftlist = [hardworker] + shiftlist
             sheet.append(shiftlist)
             shift[worker.value] = shiftlist
-            wb.save(os.path.join(BASE_DIR, f'djsg/media/djsg/shifts/{nextmonth}月のShift.xlsx'))
+            wb.save(os.path.join(
+                BASE_DIR,
+                f'djsg/media/djsg/shifts/{nextmonth}月のShift.xlsx'))
 
     for worker in sh2['A']:
         shiftlist = []
@@ -399,12 +404,14 @@ def shiftgenerator(workerlist):
                 shiftlist = [worker.value] + shiftlist
                 shift[worker.value] = shiftlist
                 sheet.append(shiftlist)
-                wb.save(os.path.join(BASE_DIR, f'djsg/media/djsg/shifts/{nextmonth}月のShift.xlsx'))
+                wb.save(os.path.join(
+                    BASE_DIR,
+                    f'djsg/media/djsg/shifts/{nextmonth}月のShift.xlsx'))
 
     for row in sheet.rows:
         for cell in row:
-            if cell.value != None:
-                cell.alignment = Alignment( horizontal = 'center')
+            if cell.value:
+                cell.alignment = Alignment(horizontal='center')
                 cell.border = Border(
                     outline=True,
                     left=Side(style="medium", color="FF000000"),
@@ -413,12 +420,15 @@ def shiftgenerator(workerlist):
                     bottom=Side(style="medium", color="FF000000")
                     )
     noworkingcell = PatternFill(
-        patternType = 'solid',
+        patternType='solid',
         start_color='ff615a5a',
         end_color='ff615a5a')
+
     for days in sheet['2']:
         if days.value == noWorkingDays[nextmonth]:
-            dcolumn = days.column # 縦がcolumn 横がrow
+            dcolumn = days.column  # 縦がcolumn 横がrow
             for selected in sheet[dcolumn]:
                 selected.fill = noworkingcell
-    wb.save(os.path.join(BASE_DIR, f'djsg/media/djsg/shifts/{nextmonth}月のShift.xlsx'))
+    wb.save(os.path.join(
+        BASE_DIR,
+        f'djsg/media/djsg/shifts/{nextmonth}月のShift.xlsx'))

@@ -15,4 +15,3 @@ urlpatterns = [
     path('register', views.register, name="register"),
     path('shiftmailer', views.shiftmailer, name="shiftmailer"),
 ]
-
