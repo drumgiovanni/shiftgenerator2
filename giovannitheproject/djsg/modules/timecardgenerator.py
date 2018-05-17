@@ -11,10 +11,10 @@ def tcgen(sel_month, name, f_name, wnum):
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     SHIFTPATH = os.path.join(
         BASE_DIR,
-        f'djsg/media/djsg/shifts/{sel_month}のShift.xlsx')
+        f'media/djsg/shifts/{sel_month}のShift.xlsx')
     TCPATH = os.path.join(
         BASE_DIR,
-        'djsg/media/djsg/tc.xlsx')
+        'media/djsg/tc.xlsx')
 
     dates = []
     datesDic = {0: "月", 1: "火", 2: "水", 3: "木", 4: "金", 5: "土", 6: "日"}
@@ -74,7 +74,7 @@ def tcgen(sel_month, name, f_name, wnum):
             satlist.append(sat + 7 * i)
         if (sun + 7 * i) <= b:
             sunlist.append(sun + 7 * i)
-
+    p_row = ""
     for c in shift['A']:
         if c.value == name:
             p_row = c.row
@@ -210,4 +210,4 @@ def tcgen(sel_month, name, f_name, wnum):
             tt.cell(column=1, row=i+6).fill = suncell
     tc.save(os.path.join(
         BASE_DIR,
-        f"djsg/media/djsg/timecards/{nextmonth}月勤務報告書（{name}）.xlsx"))
+        f"media/djsg/timecards/{sel_month}月勤務報告書（{name}）.xlsx"))

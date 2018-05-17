@@ -13,7 +13,7 @@ def sendmail(mail, sel_month, name):
     MY_PASSWORD = "Drum1995"
     TO_ADDRESS = mail
     SUBJECT = "勤務報告書"
-    FILENAME = f"djsg/media/djsg/timecards/{sel_month}勤務報告書（{name}）.xlsx"
+    FILENAME = f"media/djsg/timecards/{sel_month}勤務報告書（{name}）.xlsx"
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
     def create_message(from_addr, to_addr, subject, attach_file):
@@ -31,7 +31,7 @@ def sendmail(mail, sel_month, name):
         encoders.encode_base64(attachment)
         msg.attach(attachment)
         attachment.add_header(
-            "Content-Disposition", "attachment", filename='5月勤務報告書（中井）.xlsx')
+            "Content-Disposition", "attachment", filename=f'{sel_month}勤務報告書（{name}）.xlsx')
         return msg
 
     def send(from_addr, to_addr, msg):

@@ -96,7 +96,7 @@ def shiftgenerator(workerlist):
         workableexcel = [workers[j]] + tictac
         sh.append(workableexcel)
     wb.save(os.path.join(
-        BASE_DIR, f'djsg/media/djsg/shifts/{nextmonth}月のShift.xlsx'))
+        BASE_DIR, f'media/djsg/shifts/{nextmonth}月のShift.xlsx'))
 
     checklist = weekdays + weekdays + satlist + satlist + holydaylist
     checklist.sort()
@@ -275,7 +275,7 @@ def shiftgenerator(workerlist):
 
     wb.save(
         os.path.join(BASE_DIR,
-                     f'djsg/media/djsg/shifts/{nextmonth}月のShift.xlsx'))
+                     f'media/djsg/shifts/{nextmonth}月のShift.xlsx'))
 
     hardworker = ""
     wdays = 0
@@ -329,7 +329,7 @@ def shiftgenerator(workerlist):
             shift[worker.value] = shiftlist
             wb.save(os.path.join(
                 BASE_DIR,
-                f'djsg/media/djsg/shifts/{nextmonth}月のShift.xlsx'))
+                f'media/djsg/shifts/{nextmonth}月のShift.xlsx'))
 
     for worker in sh2['A']:
         shiftlist = []
@@ -362,7 +362,7 @@ def shiftgenerator(workerlist):
                 sheet.append(shiftlist)
                 wb.save(os.path.join(
                     BASE_DIR,
-                    f'djsg/media/djsg/shifts/{nextmonth}月のShift.xlsx'))
+                    f'media/djsg/shifts/{nextmonth}月のShift.xlsx'))
 
     for row in sheet.rows:
         for cell in row:
@@ -387,4 +387,4 @@ def shiftgenerator(workerlist):
                 selected.fill = noworkingcell
     wb.save(os.path.join(
         BASE_DIR,
-        f'djsg/media/djsg/shifts/{nextmonth}月のShift.xlsx'))
+        f'media/djsg/shifts/{nextmonth}月のShift.xlsx'))
