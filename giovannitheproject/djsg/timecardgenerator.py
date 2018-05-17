@@ -23,7 +23,7 @@ def tcgen(sel_month, name, f_name, wnum):
     tc = openpyxl.load_workbook(TCPATH)
     st = openpyxl.load_workbook(SHIFTPATH)
 
-    shift = st[f"{sel_month}月"]
+    shift = st[f"{sel_month}"]
     tt = tc["201404"]
     colA = []
     colB = []
