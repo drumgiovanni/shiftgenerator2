@@ -128,29 +128,32 @@ def shiftslist(request):
 
 @login_required
 def timecard(request):
-    
-    sel_month = request.POST.get('sel-month')
-    
-    name = request.POST.get('name')
-    f_name = request.POST.get('f_name')
-    wnum = request.POST.get('w_num')
-    mail = request.POST.get('mail')
-    
-    if request.method == "POST":
-        if 'b2' in request.POST:
-            db = models.Workers()
-            db.worker_name = name
-            db.worker_fname = f_name
-            db.w_num = wnum
-            db.mail = mail
-            db.save()
+    try:
+        sel_month = request.POST.get('sel-month')
+        
+        name = request.POST.get('name')
+        f_name = request.POST.get('f_name')
+        wnum = request.POST.get('w_num')
+        mail = request.POST.get('mail')
+        
+        if request.method == "POST":
+            if 'b2' in request.POST:
+                db = models.Workers()
+                db.worker_name = name
+                db.worker_fname = f_name
+                db.w_num = wnum
+                db.mail = mail
+                db.save()
 
-            
+                
 
-    timecardgenerator.tcgen(sel_month, name, f_name, wnum)
-    mailer.sendmail(mail, sel_month, name)    
+        timecardgenerator.tcgen(sel_month, name, f_name, wnum)
+        mailer.sendmail(mail, sel_month, name)    
 
-    return render(request, 'djsg/sent.html')
+        return render(request, 'djsg/sent.html')
+
+    except Exception as e:
+        return render(request, 'djsg/500.html')
 
 
 def ajax(request):
