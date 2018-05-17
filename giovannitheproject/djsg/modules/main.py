@@ -4,7 +4,7 @@
 import openpyxl
 from openpyxl.styles import Font, PatternFill, Border, Side, Alignment
 import os
-import month_info
+from . import month_info
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -182,7 +182,9 @@ def shiftgenerator(workerlist):
 
         except ValueError:
             pass
+        
         looptime += 1
+        
         if looptime >= 40:
             break
 
@@ -288,15 +290,6 @@ def shiftgenerator(workerlist):
 
     sheet.append(['日勤シフト']+dates)
     sheet.append(daysforexcel)
-
-    satcell = PatternFill(
-        patternType='solid',
-        start_color='ff00ff00',
-        end_color='ff0000ff')
-    suncell = PatternFill(
-        patternType='solid',
-        start_color='ffff0000',
-        end_color='ffff0000')
 
     for i in range(1, b+2):
         selected = sheet.cell(row=2, column=i)

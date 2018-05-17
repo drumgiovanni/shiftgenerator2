@@ -4,8 +4,8 @@ from django.http import JsonResponse
 import calendar
 import datetime
 import os
-from . import main, timecardgenerator, mailer, models, shift_mailer
-
+from .modules import main, timecardgenerator, mailer, shift_mailer
+from . import models
 from django.contrib.auth.decorators import login_required
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
